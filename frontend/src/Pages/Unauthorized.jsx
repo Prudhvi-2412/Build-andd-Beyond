@@ -19,7 +19,7 @@ const Unauthorized = () => {
 
   useEffect(() => {
     // Log unauthorized access to backend
-    fetch("http://localhost:3000/api/log-client-error", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/log-client-error`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

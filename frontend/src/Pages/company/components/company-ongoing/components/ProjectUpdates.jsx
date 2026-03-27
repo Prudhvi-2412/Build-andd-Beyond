@@ -515,10 +515,10 @@ const ProjectUpdates = ({ project, expandedUpdates, onRefresh }) => {
                 {project.completionImages.map((img, idx) => (
                   <img
                     key={idx}
-                    src={`http://localhost:3000/${img}`}
+                    src={`${import.meta.env.VITE_API_URL}/${img}`}
                     alt={`Completion ${idx + 1}`}
                     className="completion-image"
-                    onClick={() => window.open(`http://localhost:3000/${img}`, '_blank')}
+                    onClick={() => window.open(`${import.meta.env.VITE_API_URL}/${img}`, '_blank')}
                   />
                 ))}
               </div>

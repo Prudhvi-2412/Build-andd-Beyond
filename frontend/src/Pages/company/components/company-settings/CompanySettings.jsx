@@ -6,8 +6,8 @@ import ProfileSection from "./components/ProfileSection";
 import SecuritySection from "./components/SecuritySection";
 import HelpSection from "./components/HelpSection";
 
-const API_GET = "http://localhost:3000/api/companysettings";
-const API_POST_UPDATE = "http://localhost:3000/api/update-company-profile";
+const API_GET = `${import.meta.env.VITE_API_URL}/api/companysettings`;
+const API_POST_UPDATE = `${import.meta.env.VITE_API_URL}/api/update-company-profile`;
 
 export default function CompanySettings() {
   const [loading, setLoading] = useState(true);

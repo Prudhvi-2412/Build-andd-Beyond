@@ -52,7 +52,7 @@ const CompanyChat = () => {
     const userId = data.userId;
     const userRole = data.userRole || 'company';
 
-    socketRef.current = io('http://localhost:3000', {
+    socketRef.current = io(import.meta.env.VITE_API_URL, {
       withCredentials: true,
     });
 

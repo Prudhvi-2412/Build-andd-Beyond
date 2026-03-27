@@ -34,7 +34,7 @@ const CompanyOngoing = () => {
   const fetchData = useCallback(async () => {
       try {
         setLoading(true);
-        const res = await fetch("http://localhost:3000/api/companyongoing_projects", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/companyongoing_projects`, {
           credentials: "include",
         });
         if (!res.ok) throw new Error("Failed to fetch ongoing projects");
@@ -44,7 +44,7 @@ const CompanyOngoing = () => {
         
         // Fetch unviewed complaints count (from customers)
         try {
-          const complaintsRes = await fetch('http://localhost:3000/api/company/unviewed-customer-messages', {
+          const complaintsRes = await fetch(`${import.meta.env.VITE_API_URL}/api/company/unviewed-customer-messages`, {
             credentials: 'include'
           });
           if (complaintsRes.ok) {
@@ -111,7 +111,7 @@ const CompanyOngoing = () => {
       });
       
       try {
-        await fetch(`http://localhost:3000/api/company/mark-messages-viewed/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/company/mark-messages-viewed/${id}`, {
           method: 'POST',
           credentials: 'include'
         });

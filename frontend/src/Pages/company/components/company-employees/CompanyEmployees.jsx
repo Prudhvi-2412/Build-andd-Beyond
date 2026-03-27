@@ -9,7 +9,7 @@ const CompanyEmployees = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/my-employees", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/my-employees`, {
       method: "GET",
       credentials: "include"
     })

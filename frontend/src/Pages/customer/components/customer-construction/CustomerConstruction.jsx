@@ -437,12 +437,12 @@ const CustomerConstruction = () => {
                                     (img, imgIdx) => (
                                       <img
                                         key={imgIdx}
-                                        src={`http://localhost:3000/${img}`}
+                                        src={`${import.meta.env.VITE_API_URL}/${img}`}
                                         alt={`Completion ${imgIdx + 1}`}
                                         className="completion-image"
                                         onClick={() =>
                                           window.open(
-                                            `http://localhost:3000/${img}`,
+                                            `${import.meta.env.VITE_API_URL}/${img}`,
                                             "_blank",
                                           )
                                         }

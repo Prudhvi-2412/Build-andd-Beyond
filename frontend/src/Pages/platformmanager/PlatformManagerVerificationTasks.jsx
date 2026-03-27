@@ -6,7 +6,7 @@ import "./PlatformManagerDashboard.css";
 const getDocumentUrl = (path) => {
   if (!path) return "";
   if (path.startsWith("http")) return path;
-  return `http://localhost:3000${path.startsWith("/") ? "" : "/"}${path}`;
+  return `${import.meta.env.VITE_API_URL}${path.startsWith("/") ? "" : "/"}${path}`;
 };
 
 const PlatformManagerVerificationTasks = () => {

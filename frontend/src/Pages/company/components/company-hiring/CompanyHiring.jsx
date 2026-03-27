@@ -6,7 +6,7 @@ import RequestedWorkersTable from "./components/RequestedWorkersTable";
 import ProfileModal from "./components/ProfileModal";
 import HireModal from "./components/HireModal";
 
-const BACKEND_BASE = "http://localhost:3000";
+const BACKEND_BASE = import.meta.env.VITE_API_URL;
 
 function useDebounced(fn, wait = 300) {
   const timeoutRef = React.useRef(null);
