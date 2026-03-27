@@ -32,6 +32,29 @@ const {
 const { ChatRoom } = require("./models");
 const { authorizeChatAccess } = require("./controllers/chatController");
 
+const allowedOrigins = Array.from(
+  new Set(
+    [
+      ...(process.env.FRONTEND_URLS || "").split(",").map((origin) => origin.trim()),
+      FRONTEND_URL,
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+    ].filter(Boolean),
+  ),
+);
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true;
+  return allowedOrigins.includes(origin);
+};
+
+const corsOriginHandler = (origin, callback) => {
+  if (isAllowedOrigin(origin)) {
+    return callback(null, true);
+  }
+  return callback(new Error(`Not allowed by CORS: ${origin}`));
+};
+
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
   api_key: CLOUDINARY_API_KEY,
@@ -42,7 +65,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: FRONTEND_URL,
+    origin: corsOriginHandler,
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -63,7 +86,7 @@ app.use(express.static("Final Pages"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: corsOriginHandler,
     credentials: true,
   }),
 );
