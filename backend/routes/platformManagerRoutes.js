@@ -20,6 +20,7 @@ const {
 
 const authadmin = require('../middlewares/authadmin');
 const requireSuperadmin = require('../middlewares/requireSuperadmin');
+const { getClearCookieOptions } = require('../utils/cookieOptions');
 
 // ============================================
 // PLATFORM MANAGER LOGIN ROUTE
@@ -41,7 +42,7 @@ router.get('/platform-manager/verify-session', authadmin, (req, res) => {
 
 // Platform manager logout
 router.post('/platform-manager/logout', (req, res) => {
-  res.clearCookie('admin_token', { path: '/' });
+  res.clearCookie('admin_token', getClearCookieOptions());
   res.json({ message: 'Logged out successfully' });
 });
 

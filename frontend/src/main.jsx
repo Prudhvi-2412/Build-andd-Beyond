@@ -8,7 +8,9 @@ import './styles/AdminGlobal.css';
 import { ValidationProvider } from './context/ValidationContext.jsx';
 import { Provider } from 'react-redux';
 import store from './store';
+import { initializeApiClient } from './utils/apiClient.js';
 
+initializeApiClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

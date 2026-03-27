@@ -40,6 +40,7 @@ const {
 } = require("../controllers/adminSettingsController");
 
 const authadmin = require("../middlewares/authadmin");
+const { getClearCookieOptions } = require("../utils/cookieOptions");
 
 // Admin login route
 router.post("/admin/login", authadmin);
@@ -51,7 +52,7 @@ router.get("/admin/verify-session", authadmin, (req, res) => {
 
 // Admin logout route
 router.post("/admin/logout", (req, res) => {
-  res.clearCookie("admin_token", { path: "/" });
+  res.clearCookie("admin_token", getClearCookieOptions());
   res.json({ message: "Logged out successfully" });
 });
 

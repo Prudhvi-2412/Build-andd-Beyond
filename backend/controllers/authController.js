@@ -9,6 +9,7 @@ const { Customer, Company, Worker } = require('../models');
 const EmailOtp = require('../models/emailOtpModel');
 const { sendOtpEmail } = require('../utils/emailService');
 const { autoAssignVerification } = require('./platformManagerController');
+const { getAuthCookieOptions, getClearCookieOptions } = require('../utils/cookieOptions');
 const upload = require('../middlewares/upload').upload; // Multer upload
 
 const OTP_EXPIRY_MINUTES = Number(process.env.OTP_EXPIRY_MINUTES || 10);
@@ -48,12 +49,7 @@ const getRedirectByRole = (role) => {
 
 const setAuthCookie = (res, user) => {
   const token = jwt.sign({ user_id: user._id.toString(), role: user.role }, JWT_SECRET, { expiresIn: '1d' });
-  res.cookie('token', token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 1000 * 60 * 60 * 24,
-    sameSite: 'lax',
-  });
+  res.cookie('token', token, getAuthCookieOptions(1000 * 60 * 60 * 24));
 };
 
 const upsertOtpRecord = async ({ email, purpose, otp }) => {
@@ -514,7 +510,7 @@ const updateTwoFactorStatus = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', getClearCookieOptions());
   res.status(200).json({ message: 'Logout successful' });
 };
 

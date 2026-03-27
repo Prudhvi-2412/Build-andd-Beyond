@@ -20,6 +20,7 @@ const paymentRoutes = require("./routes/paymentRoutes");
 const platformManagerRoutes = require("./routes/platformManagerRoutes");
 const { setupSwagger } = require("./config/swagger");
 const { initRedis } = require("./utils/redisClient");
+const { getClearCookieOptions } = require("./utils/cookieOptions");
 
 const {
   PORT,
@@ -85,7 +86,7 @@ app.get("/adminpage", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  res.clearCookie("token", { httpOnly: true, sameSite: "lax", path: "/" });
+  res.clearCookie("token", getClearCookieOptions());
   res.status(200).json({ redirect: "/" });
 });
 
