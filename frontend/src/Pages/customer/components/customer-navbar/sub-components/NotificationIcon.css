@@ -1,0 +1,18 @@
+/* src/Pages/customer/components/customer-navbar/sub-components/NotificationIcon.css */
+.customer_notification_icon {
+  margin-left: 25px;
+  cursor: pointer;
+  position: relative;
+  color: white;
+}
+
+.customer_notification_icon_dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: #ff4d4f;
+  border-radius: 50%;
+  border: 2px solid #0d1a44;
+}

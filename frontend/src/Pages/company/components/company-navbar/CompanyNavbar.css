@@ -1,0 +1,101 @@
+/* src/components/company-navbar/CompanyNavbar.css */
+
+.company_navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--content-dark, #1F2937);
+  border-bottom: 1px solid var(--border-dark, #374151);
+}
+
+.company_navbar_navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2.5rem;
+  height: 70px;
+  color: var(--text-primary, #F9FAFB);
+  max-width: 100vw;
+}
+
+.company_navbar_brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary, #F9FAFB);
+  text-decoration: none;
+}
+
+.company_navbar_navLinks {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.company_navbar_navLink {
+  color: var(--text-secondary, #9CA3AF);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.company_navbar_navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-accent, #2DD4BF);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-out;
+}
+
+.company_navbar_navLink:hover,
+.company_navbar_navLink.active {
+  color: var(--primary-accent, #2DD4BF);
+}
+
+.company_navbar_navLink:hover::after,
+.company_navbar_navLink.active::after {
+  transform: scaleX(1);
+}
+
+.company_navbar_settingsContainer {
+  position: relative;
+}
+
+.company_navbar_settingsBtn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.company_navbar_settingsBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.company_navbar_settingsIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--border-dark, #374151);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company_navbar_settingsSvg {
+  width: 18px;
+  height: 18px;
+  fill: var(--text-secondary, #9CA3AF);
+}

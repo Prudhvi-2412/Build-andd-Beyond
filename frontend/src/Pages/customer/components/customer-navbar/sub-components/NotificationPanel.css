@@ -1,0 +1,78 @@
+/* src/Pages/customer/components/customer-navbar/sub-components/NotificationPanel.css */
+.customer_notification_panel {
+  position: absolute;
+  right: 0;
+  top: 70px;
+  width: 340px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  color: #333;
+}
+
+.customer_notification_panel_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.customer_notification_panel_title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.customer_notification_panel_markRead {
+  color: #0d1a44;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.customer_notification_panel_item {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.customer_notification_panel_item::before {
+  content: "•";
+  color: #e9c46a;
+  font-size: 24px;
+  margin-right: 12px;
+  line-height: 20px;
+}
+
+.customer_notification_panel_item_read::before {
+  color: #ccc;
+}
+
+.customer_notification_panel_content {
+  flex: 1;
+}
+
+.customer_notification_panel_text {
+  font-size: 14px;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.customer_notification_panel_time {
+  font-size: 12px;
+  color: #888;
+}
+
+.customer_notification_panel_footer {
+  text-align: center;
+  padding: 15px;
+}
+
+.customer_notification_panel_viewAll {
+  color: #0d1a44;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
