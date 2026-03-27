@@ -32,6 +32,8 @@ const {
 const { ChatRoom } = require("./models");
 const { authorizeChatAccess } = require("./controllers/chatController");
 
+const normalizeOrigin = (origin) => String(origin || "").trim().replace(/\/+$/, "").toLowerCase();
+
 const allowedOrigins = Array.from(
   new Set(
     [
@@ -39,13 +41,22 @@ const allowedOrigins = Array.from(
       FRONTEND_URL,
       "http://localhost:5173",
       "http://127.0.0.1:5173",
-    ].filter(Boolean),
+    ]
+      .filter(Boolean)
+      .map(normalizeOrigin),
   ),
 );
 
+const vercelProjectPattern = /^https:\/\/([a-z0-9-]+\.)*build-andd-beyond\.vercel\.app$/i;
+
 const isAllowedOrigin = (origin) => {
   if (!origin) return true;
-  return allowedOrigins.includes(origin);
+
+  const normalized = normalizeOrigin(origin);
+  if (allowedOrigins.includes(normalized)) return true;
+  if (vercelProjectPattern.test(normalized)) return true;
+
+  return false;
 };
 
 const corsOriginHandler = (origin, callback) => {
